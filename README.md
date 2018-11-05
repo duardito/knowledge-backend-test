@@ -6,7 +6,7 @@ The challenge consists in a Java SpringBoot Application.
 
 ## Introduction
 
-You're given the following entities.
+You're given the following entities distributed in three JSON files located in the resources folder.
 
 - Campaign
     - id
@@ -30,11 +30,13 @@ You're given the following entities.
 
 Consider the following:
 
-1. One campaign can have N adGroups.
-2. One adGroup can have N keywords.
-3. One campaign can have N keywords but at least one adGroup.
-4. One adGroup belongs to a single campaign.
-5. One keyword belongs to a single adGroup.
+1. One campaign can have N ad groups.
+2. One ad group can have N keywords.
+3. One campaign can have N keywords but at least one ad group.
+4. One ad group belongs to a single campaign.
+5. One keyword belongs to a single ad group.
+6. One ad group can be created if and only if the campaign exists, otherwise the application must return HTTP status code 403.
+7. One keyword can be created if and only if the ad group exists, otherwise the application must return HTTP status code 403.
 
 ## Goals
 
@@ -52,13 +54,26 @@ Secondly, we'll need to obtain the following metrics.
 
 Note: create an endpoint for each goal 
 
-## Example
+## Examples
 
 We want to get the keyword with identifier 1. 
 Assuming that it belongs to campaign id 2 and ad group id 3, then the endpoint would be:
 
 ```
-/campaigns/2/adGroups/3/keywords/1
+GET /campaigns/2/adGroups/3/keywords/1
+```
+
+We want to create a keyword with identifier 2 that belongs to ad group 3 and campaign 2. 
+
+```
+POST /keywords
+body: {"id":2,"campaignId":2,"adGroupId":3,"clicks":0,"conversions":0,"cost":0.00}
+```
+
+We want to obtain the most converted keyword.
+
+```
+GET keywords/getMostConverted
 ```
 
 ## Important
@@ -80,6 +95,7 @@ Make sure your application runs with:
 - Good performance
 - Concurrent file management
 - Data structures and algorithms used as well as their space and time complexity.
+- Error handling
 
 
 ## Notes
