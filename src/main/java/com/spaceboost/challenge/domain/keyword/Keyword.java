@@ -29,7 +29,7 @@ public class Keyword {
         return id;
     }
 
-    public Long getCampaignId() {
+    public  Long getCampaignId() {
         return campaignId;
     }
 
@@ -41,7 +41,7 @@ public class Keyword {
         return clicks;
     }
 
-    public Integer getConversions() {
+    public  Integer getConversions() {
         return conversions;
     }
 

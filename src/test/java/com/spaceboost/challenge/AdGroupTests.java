@@ -4,7 +4,7 @@ import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
 import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
-import com.spaceboost.challenge.framework.api.RequestAdGroup;
+import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,6 @@ public class AdGroupTests extends BaseTest{
         Assert.assertEquals(requestAdGroup.getClicks(), created.getClicks());
         Assert.assertEquals(requestAdGroup.getConversions(), created.getConversions());
         Assert.assertEquals(requestAdGroup.getCost(), created.getCost());
-
     }
 
     @Test(expected = ObjectNotFoundException.class)

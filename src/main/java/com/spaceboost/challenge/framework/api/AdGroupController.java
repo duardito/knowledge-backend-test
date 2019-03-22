@@ -2,6 +2,7 @@ package com.spaceboost.challenge.framework.api;
 
 import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
+import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

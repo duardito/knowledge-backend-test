@@ -1,4 +1,4 @@
-package com.spaceboost.challenge.framework.api;
+package com.spaceboost.challenge.framework.api.request;
 
 public class RequestAdGroup {
 

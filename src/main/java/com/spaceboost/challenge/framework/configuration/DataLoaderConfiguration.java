@@ -2,16 +2,12 @@ package com.spaceboost.challenge.framework.configuration;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spaceboost.challenge.domain.adgroup.AdGroup;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.domain.campain.Campaign;
 import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.domain.keyword.IKeywordService;
-import com.spaceboost.challenge.domain.keyword.Keyword;
-import com.spaceboost.challenge.domain.keyword.KeywordDto;
-import com.spaceboost.challenge.framework.api.RequestAdGroup;
-import com.spaceboost.challenge.framework.api.RequestKeyword;
-import com.spaceboost.challenge.framework.repository.ICampainRepository;
+import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
+import com.spaceboost.challenge.framework.api.request.RequestKeyword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -34,7 +30,6 @@ public class DataLoaderConfiguration implements CommandLineRunner {
 
     @Override
     public void run(String... args)  {
-        System.out.println("INIT load data");
         loadCampaigns();
         loadAdGroups();
         loadKeywords();
@@ -46,9 +41,7 @@ public class DataLoaderConfiguration implements CommandLineRunner {
         InputStream is = TypeReference.class.getResourceAsStream("/entities/campaigns.json");
         try {
             List<Campaign> stateList = mapper.readValue(is, mapType);
-            stateList.stream().forEach( campaign -> {
-                iCampainService.create(campaign.getId());
-            });
+            stateList.stream().forEach( campaign -> iCampainService.create(campaign.getId()));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -61,9 +54,7 @@ public class DataLoaderConfiguration implements CommandLineRunner {
         InputStream is = TypeReference.class.getResourceAsStream("/entities/adGroups.json");
         try {
             List<RequestAdGroup> stateList = mapper.readValue(is, mapType);
-            stateList.stream().forEach( adGroup-> {
-                iAdGroupService.create(adGroup);
-            });
+            stateList.stream().forEach( adGroup-> iAdGroupService.create(adGroup));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -76,9 +67,7 @@ public class DataLoaderConfiguration implements CommandLineRunner {
         InputStream is = TypeReference.class.getResourceAsStream("/entities/keywords.json");
         try {
             List<RequestKeyword> stateList = mapper.readValue(is, mapType);
-            stateList.stream().forEach( keyword-> {
-                iKeywordService.create(keyword);
-            });
+            stateList.stream().forEach( keyword-> iKeywordService.create(keyword));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

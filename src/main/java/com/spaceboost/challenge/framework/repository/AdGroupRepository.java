@@ -3,7 +3,7 @@ package com.spaceboost.challenge.framework.repository;
 import com.spaceboost.challenge.domain.adgroup.AdGroup;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
 import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
-import com.spaceboost.challenge.framework.api.RequestAdGroup;
+import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 
 import java.util.ArrayList;
 import java.util.List;

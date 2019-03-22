@@ -2,6 +2,7 @@ package com.spaceboost.challenge.framework.api;
 
 import com.spaceboost.challenge.domain.keyword.IKeywordService;
 import com.spaceboost.challenge.domain.keyword.KeywordDto;
+import com.spaceboost.challenge.framework.api.request.RequestKeyword;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,18 @@ public class KeywordController {
         return new ResponseEntity<KeywordDto>(keyword, HttpStatus.CREATED);
     }
 
+    /*
+    FIXME: we need to check this endpoint , specification is not clear with current path
+     */
     @GetMapping("/campaigns/{campaignId}/adGroups/{adGroupId}/keywords/{keywordId}")
     public ResponseEntity<KeywordDto> get(@PathVariable Long campaignId, @PathVariable Long adGroupId, @PathVariable Long keywordId) {
         KeywordDto keyword = iKeywordService.getByIdByCampaignAndByGroup(campaignId, adGroupId, keywordId);
+        return new ResponseEntity<KeywordDto>(keyword, keyword == null ? HttpStatus.NOT_FOUND: HttpStatus.OK);
+    }
+
+    @GetMapping("/keywords/getMostConverted")
+    public ResponseEntity<KeywordDto> getMostConverted() {
+        KeywordDto keyword = iKeywordService.getMostConverted();
         return new ResponseEntity<KeywordDto>(keyword, keyword == null ? HttpStatus.NOT_FOUND: HttpStatus.OK);
     }
 }

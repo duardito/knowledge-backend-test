@@ -4,4 +4,7 @@ public interface ICampainService {
     CampainDto getBy(Long id);
 
     CampainDto create(Long id);
+
+    CampainDto getWithMostCostButLessConversions();
+
 }
