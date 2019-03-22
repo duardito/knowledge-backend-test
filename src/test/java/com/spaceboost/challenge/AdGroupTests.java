@@ -4,19 +4,13 @@ import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
 import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
-import com.spaceboost.challenge.framework.Application;
 import com.spaceboost.challenge.framework.api.RequestAdGroup;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-public class AdGroupTests {
+public class AdGroupTests extends BaseTest{
 
     @Autowired
     private IAdGroupService adGroupService;

@@ -3,18 +3,12 @@ package com.spaceboost.challenge;
 import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
 import com.spaceboost.challenge.domain.keyword.IKeywordService;
 import com.spaceboost.challenge.domain.keyword.KeywordDto;
-import com.spaceboost.challenge.framework.Application;
 import com.spaceboost.challenge.framework.api.RequestKeyword;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-public class KeywordTest {
+public class KeywordTest extends BaseTest{
 
     @Autowired
     private IKeywordService iKeywordService;
