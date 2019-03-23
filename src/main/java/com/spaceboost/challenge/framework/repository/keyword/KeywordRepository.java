@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class KeywordRepository implements IKeywordRepository {
 
-    private List<Keyword> persistence = new ArrayList<>();
+    private volatile List<Keyword> persistence = new ArrayList<>();
 
     private List<Keyword> getCopy() {
         return Collections.unmodifiableList(persistence);

@@ -27,7 +27,7 @@ public class AdGroupRepository implements IAdGroupRepository {
     public AdGroup find(Long id) {
         return getCopy().
                 stream().
-                filter(campain -> campain.getId().equals(id)).
+                filter(campain -> id.equals(campain.getId())).
                 findFirst().
                 orElse(null);
     }

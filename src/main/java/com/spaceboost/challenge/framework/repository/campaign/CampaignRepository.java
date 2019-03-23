@@ -9,21 +9,21 @@ import java.util.List;
 
 public class CampaignRepository implements ICampaignRepository {
 
-    private List<Campaign> persistence = new ArrayList<Campaign>();
+    private volatile List<Campaign> persistence = new ArrayList<Campaign>();
 
     private List<Campaign> getCopy() {
         return Collections.unmodifiableList(persistence);
     }
 
     private Boolean getSequenceNextValue(Long id) {
-        return getCopy().stream().filter(p -> p.getId().equals(id)).findFirst().isPresent();
+        return getCopy().stream().filter(p -> id.equals(p.getId())).findFirst().isPresent();
     }
 
     @Override
     public Campaign find(Long id) {
         return getCopy().
                 stream().
-                filter(campain -> campain.getId().equals(id)).
+                filter(campain -> id.equals(campain.getId())).
                 findFirst().
                 orElse(null);
     }
