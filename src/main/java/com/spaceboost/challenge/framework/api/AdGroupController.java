@@ -18,13 +18,13 @@ public class AdGroupController {
 
     @GetMapping("/adGroup/{id}")
     public ResponseEntity<AdGroupDto> get(@PathVariable Long id) {
-        AdGroupDto adGroup = iAdGroupService.getBy(id);
+        final AdGroupDto adGroup = iAdGroupService.getBy(id);
         return new ResponseEntity<AdGroupDto>(adGroup, adGroup == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     @PostMapping("/adGroup/")
     public ResponseEntity<AdGroupDto> create(@RequestBody RequestAdGroup requestAdGroup) {
-        AdGroupDto adGroup = iAdGroupService.create(requestAdGroup);
+        final AdGroupDto adGroup = iAdGroupService.create(requestAdGroup);
         return new ResponseEntity<AdGroupDto>(adGroup, HttpStatus.CREATED);
     }
 

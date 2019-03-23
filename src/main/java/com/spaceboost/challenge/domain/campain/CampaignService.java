@@ -11,20 +11,18 @@ public class CampaignService implements ICampainService {
     }
 
     @Override
-    public CampainDto getBy(Long id){
-        Campaign campaign = iCampaignRepository.find(id);
+    public CampaingDto getBy(Long id){
+        final Campaign campaign = iCampaignRepository.find(id);
         if(campaign == null){
             return null;
         }
-        return new CampainDto.Builder().id(campaign.getId()).build();
+        return new CampaingDto.Builder().id(campaign.getId()).build();
     }
 
-
-
     @Override
-    public CampainDto create(Long id){
-        Campaign campaign =  iCampaignRepository.create(id);
-        return new CampainDto.Builder().id(campaign.getId()).build();
+    public CampaingDto create(Long id){
+        final Campaign campaign =  iCampaignRepository.create(id);
+        return new CampaingDto.Builder().id(campaign.getId()).build();
     }
 
 }

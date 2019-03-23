@@ -18,7 +18,7 @@ public class CampaignCompoundController {
 
     @GetMapping(value = "/campaigns/mostCostLessConversions")
     public ResponseEntity<KeywordAdGroupDto> getCampaignWithMostCostAndLessConversions() {
-        KeywordAdGroupDto mostAndLess = iKeywordAdGroupService.getMostCostLessConverted();
+        final KeywordAdGroupDto mostAndLess = iKeywordAdGroupService.getMostCostLessConverted();
         return new ResponseEntity<KeywordAdGroupDto>(mostAndLess, HttpStatus.OK);
     }
 }

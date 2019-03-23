@@ -23,14 +23,6 @@ public class KeywordRepository implements IKeywordRepository {
         return getCopy().stream().filter(p -> id.equals(p.getId())).findFirst().isPresent();
     }
 
-    @Override
-    public Keyword find(Long id) {
-        return getCopy().
-                stream().
-                filter(campain -> id.equals(campain.getId())).
-                findFirst().
-                get();
-    }
 
     @Override
     public Keyword findByIdByCampaignAndByGroup(Long campaignId, Long adGroupId, Long keywordId) {

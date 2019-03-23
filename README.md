@@ -108,4 +108,13 @@ Create a zip file and send it to the email that had this project attached. Pleas
 files and your git folders with it.
 ## 
 
-Extra information:
+## Extra information:
+##
+About this point: "_The campaign with most cost but less conversions._", as It is not clear for me 
+if you want this campaign coming fom keyword or adgroup, I added both objects
+in same response, so you will get both of them, in case it is only one of them, we must only filter one of them.
+
+As extra testing quality check, you can try: **mvn org.pitest:pitest-maven:mutationCoverage**, as results you will see
+a good mutation results.
+
+swagger UI added, if you want to test endpoints , just run application and go to : `http://localhost:8080/swagger-ui.html`

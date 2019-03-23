@@ -2,7 +2,7 @@ package com.spaceboost.challenge.domain.keyword;
 
 import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
-import com.spaceboost.challenge.domain.campain.CampainDto;
+import com.spaceboost.challenge.domain.campain.CampaingDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.domain.exception.ForbiddenException;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;
@@ -22,7 +22,7 @@ public class KeywordService implements IKeywordService {
 
     @Override
     public KeywordDto getMostClicked(){
-        Keyword keyword = iKeywordRepository.findMostClicked();
+        final Keyword keyword = iKeywordRepository.findMostClicked();
         return get(keyword);
     }
 
@@ -30,13 +30,13 @@ public class KeywordService implements IKeywordService {
     public KeywordDto create(RequestKeyword requestKeyword) {
         validateCampaignExists(requestKeyword.getCampaignId());
         validateAdGroupExists(requestKeyword.getAdGroupId());
-        Keyword keyword = iKeywordRepository.create(requestKeyword);
+        final Keyword keyword = iKeywordRepository.create(requestKeyword);
         return get(keyword);
     }
 
     @Override
     public KeywordDto getByIdByCampaignAndByGroup(Long campaignId, Long adGroupId, Long keywordId) {
-        Keyword keyword = iKeywordRepository.findByIdByCampaignAndByGroup(campaignId, adGroupId, keywordId);
+        final Keyword keyword = iKeywordRepository.findByIdByCampaignAndByGroup(campaignId, adGroupId, keywordId);
         if(keyword == null){
             return null;
         }
@@ -45,13 +45,13 @@ public class KeywordService implements IKeywordService {
 
     @Override
     public KeywordDto getMostConverted() {
-        Keyword keyword = iKeywordRepository.findMostConverted();
+        final Keyword keyword = iKeywordRepository.findMostConverted();
         return get(keyword);
     }
 
     @Override
     public KeywordDto getMostCostLessConverted() {
-        Keyword most = iKeywordRepository.findMostCostLessConverted();
+        final Keyword most = iKeywordRepository.findMostCostLessConverted();
         return get(most);
     }
 
@@ -65,15 +65,15 @@ public class KeywordService implements IKeywordService {
     }
 
     private void validateAdGroupExists(Long id) {
-        AdGroupDto adGroup = iAdGroupService.getBy(id);
+        final AdGroupDto adGroup = iAdGroupService.getBy(id);
         if(adGroup == null){
             throw new ForbiddenException("AdGroup not found");
         }
     }
 
     private void validateCampaignExists(Long id){
-        CampainDto camapaign = iCampainService.getBy(id);
-        if(camapaign == null){
+        final CampaingDto campaign = iCampainService.getBy(id);
+        if(campaign == null){
             throw new ForbiddenException("Campaign not found");
         }
     }

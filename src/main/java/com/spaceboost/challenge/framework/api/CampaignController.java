@@ -1,6 +1,6 @@
 package com.spaceboost.challenge.framework.api;
 
-import com.spaceboost.challenge.domain.campain.CampainDto;
+import com.spaceboost.challenge.domain.campain.CampaingDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.framework.api.request.RequestCampaign;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,15 @@ public class CampaignController {
     }
 
     @GetMapping(value = "/campaigns/{id}")
-    public ResponseEntity<CampainDto> get(@PathVariable Long id) {
-        CampainDto campainDto = iCampainService.getBy(id);
-        return new ResponseEntity<CampainDto>(campainDto, campainDto == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    public ResponseEntity<CampaingDto> get(@PathVariable Long id) {
+        final CampaingDto campaingDto = iCampainService.getBy(id);
+        return new ResponseEntity<CampaingDto>(campaingDto, campaingDto == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     @PostMapping(value = "/campaigns/")
-    public ResponseEntity<CampainDto> create(@RequestBody RequestCampaign requestCampaign) {
-        return new ResponseEntity<CampainDto>(iCampainService.create(requestCampaign.getId()), HttpStatus.CREATED);
+    public ResponseEntity<CampaingDto> create(@RequestBody RequestCampaign requestCampaign) {
+        final CampaingDto campaingDto = iCampainService.create(requestCampaign.getId());
+        return new ResponseEntity<CampaingDto>(campaingDto, HttpStatus.CREATED);
     }
 
 }

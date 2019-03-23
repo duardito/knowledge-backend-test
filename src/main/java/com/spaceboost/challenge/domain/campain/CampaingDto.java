@@ -1,6 +1,6 @@
 package com.spaceboost.challenge.domain.campain;
 
-public class CampainDto {
+public class CampaingDto {
 
     private Long id;
 
@@ -13,12 +13,12 @@ public class CampainDto {
             return this;
         }
 
-        public CampainDto build() {
-            return new CampainDto(this);
+        public CampaingDto build() {
+            return new CampaingDto(this);
         }
     }
 
-    private CampainDto(Builder builder) {
+    private CampaingDto(Builder builder) {
         this.id = builder.id;
     }
 

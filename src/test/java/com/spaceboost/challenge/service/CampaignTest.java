@@ -2,7 +2,7 @@ package com.spaceboost.challenge.service;
 
 
 import com.spaceboost.challenge.BaseTest;
-import com.spaceboost.challenge.domain.campain.CampainDto;
+import com.spaceboost.challenge.domain.campain.CampaingDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
 import org.junit.Assert;
@@ -16,7 +16,7 @@ public class CampaignTest extends BaseTest {
 
     @Test
     public void should_add_a_campaign(){
-        CampainDto campaign = iCampainService.create(10L);
+        CampaingDto campaign = iCampainService.create(10L);
         Assert.assertEquals(campaign.getId().longValue(), 10L);
     }
 
@@ -27,14 +27,14 @@ public class CampaignTest extends BaseTest {
 
     @Test
     public void should_fail_getting_a_campaign_wich_not_exists(){
-        CampainDto response = iCampainService.getBy(20L);
+        CampaingDto response = iCampainService.getBy(20L);
         Assert.assertNull(response);
     }
 
 
     @Test
     public void should_get_a_campaign(){
-        CampainDto campaign = iCampainService.getBy(1L);
+        CampaingDto campaign = iCampainService.getBy(1L);
         Assert.assertEquals(campaign.getId().longValue(), 1L);
     }
 }
