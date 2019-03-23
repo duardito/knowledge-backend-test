@@ -28,8 +28,8 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public IKeywordService iKeywordService(IKeywordRepository iKeywordRepository, IAdGroupService iAdGroupService) {
-        return new KeywordService(iKeywordRepository, iAdGroupService);
+    public IKeywordService iKeywordService(IKeywordRepository iKeywordRepository, IAdGroupService iAdGroupService, ICampainService iCampainService) {
+        return new KeywordService(iKeywordRepository, iAdGroupService, iCampainService);
     }
 
     @Bean

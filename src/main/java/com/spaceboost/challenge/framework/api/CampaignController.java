@@ -27,10 +27,4 @@ public class CampaignController {
         return new ResponseEntity<CampainDto>(iCampainService.create(requestCampaign.getId()), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/campaigns/WithMostCostButLessConversions")
-    public ResponseEntity<CampainDto> getWithMostCostButLessConversions() {
-        CampainDto campainDto = iCampainService.getWithMostCostButLessConversions();
-        return new ResponseEntity<CampainDto>(campainDto, campainDto.getId() == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
-    }
-
 }

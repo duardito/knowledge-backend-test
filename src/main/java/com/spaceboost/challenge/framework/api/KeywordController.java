@@ -28,12 +28,18 @@ public class KeywordController {
     @GetMapping("/campaigns/{campaignId}/adGroups/{adGroupId}/keywords/{keywordId}")
     public ResponseEntity<KeywordDto> get(@PathVariable Long campaignId, @PathVariable Long adGroupId, @PathVariable Long keywordId) {
         KeywordDto keyword = iKeywordService.getByIdByCampaignAndByGroup(campaignId, adGroupId, keywordId);
-        return new ResponseEntity<KeywordDto>(keyword, keyword == null ? HttpStatus.NOT_FOUND: HttpStatus.OK);
+        return new ResponseEntity<KeywordDto>(keyword, keyword == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     @GetMapping("/keywords/getMostConverted")
     public ResponseEntity<KeywordDto> getMostConverted() {
         KeywordDto keyword = iKeywordService.getMostConverted();
-        return new ResponseEntity<KeywordDto>(keyword, keyword == null ? HttpStatus.NOT_FOUND: HttpStatus.OK);
+        return new ResponseEntity<KeywordDto>(keyword, keyword == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    }
+
+    @GetMapping("/keywords/getMostClicked")
+    public ResponseEntity<KeywordDto> getMostClicked() {
+        KeywordDto keyword = iKeywordService.getMostClicked();
+        return new ResponseEntity<KeywordDto>(keyword, HttpStatus.OK);
     }
 }

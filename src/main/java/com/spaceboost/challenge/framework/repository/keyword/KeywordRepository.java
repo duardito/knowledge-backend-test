@@ -74,7 +74,7 @@ public class KeywordRepository implements IKeywordRepository {
                 thenComparing(Comparator.comparing(CostAndConversions::getConversions).
                         reversed()).reversed();
 
-        final Collector<Keyword, CostAndConversions, CostAndConversions> collector = new KeywordCostAndConverssionsCollector();
+        final Collector<Keyword, CostAndConversions, CostAndConversions> collector = new KeywordCostAndConversionsCollector();
 
         final CostAndConversions convert = getCopy().stream().
                 collect(

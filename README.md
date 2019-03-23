@@ -107,3 +107,5 @@ Make sure your application runs with:
 Create a zip file and send it to the email that had this project attached. Please make sure to include all your source
 files and your git folders with it.
 ## 
+
+Extra information:

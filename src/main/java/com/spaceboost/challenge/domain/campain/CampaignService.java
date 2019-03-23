@@ -27,8 +27,4 @@ public class CampaignService implements ICampainService {
         return new CampainDto.Builder().id(campaign.getId()).build();
     }
 
-    @Override
-    public CampainDto getWithMostCostButLessConversions() {
-        return null;
-    }
 }

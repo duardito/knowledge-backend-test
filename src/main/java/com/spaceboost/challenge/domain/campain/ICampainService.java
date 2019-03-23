@@ -5,6 +5,4 @@ public interface ICampainService {
 
     CampainDto create(Long id);
 
-    CampainDto getWithMostCostButLessConversions();
-
 }

@@ -2,6 +2,8 @@ package com.spaceboost.challenge.domain.keyword;
 
 import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
+import com.spaceboost.challenge.domain.campain.CampainDto;
+import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.domain.exception.ForbiddenException;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;
 import com.spaceboost.challenge.framework.repository.keyword.IKeywordRepository;
@@ -10,14 +12,23 @@ public class KeywordService implements IKeywordService {
 
     private final IKeywordRepository iKeywordRepository;
     private final IAdGroupService iAdGroupService;
+    private final ICampainService iCampainService;
 
-    public KeywordService(IKeywordRepository iKeywordRepository, IAdGroupService iAdGroupService) {
+    public KeywordService(IKeywordRepository iKeywordRepository, IAdGroupService iAdGroupService, ICampainService iCampainService) {
         this.iKeywordRepository = iKeywordRepository;
         this.iAdGroupService = iAdGroupService;
+        this.iCampainService = iCampainService;
+    }
+
+    @Override
+    public KeywordDto getMostClicked(){
+        Keyword keyword = iKeywordRepository.findMostClicked();
+        return get(keyword);
     }
 
     @Override
     public KeywordDto create(RequestKeyword requestKeyword) {
+        validateCampaignExists(requestKeyword.getCampaignId());
         validateAdGroupExists(requestKeyword.getAdGroupId());
         Keyword keyword = iKeywordRepository.create(requestKeyword);
         return get(keyword);
@@ -57,6 +68,13 @@ public class KeywordService implements IKeywordService {
         AdGroupDto adGroup = iAdGroupService.getBy(id);
         if(adGroup == null){
             throw new ForbiddenException("AdGroup not found");
+        }
+    }
+
+    private void validateCampaignExists(Long id){
+        CampainDto camapaign = iCampainService.getBy(id);
+        if(camapaign == null){
+            throw new ForbiddenException("Campaign not found");
         }
     }
 

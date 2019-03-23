@@ -10,7 +10,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-public class KeywordCostAndConverssionsCollector implements Collector<Keyword, CostAndConversions, CostAndConversions>{
+public class KeywordCostAndConversionsCollector implements Collector<Keyword, CostAndConversions, CostAndConversions>{
     @Override
     public Supplier<CostAndConversions> supplier() {
         return CostAndConversions::new;
