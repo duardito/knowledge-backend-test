@@ -1,9 +1,9 @@
-package com.spaceboost.challenge;
+package com.spaceboost.challenge.service;
 
 import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
-import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
+import com.spaceboost.challenge.domain.exception.ForbiddenException;
 import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class AdGroupTests extends BaseTest{
     private IAdGroupService adGroupService;
 
     @Test(expected = DuplicatedKeyException.class)
-    public void should_get_error_duplicated_key() throws Exception {
+    public void should_get_error_duplicated_key() {
         RequestAdGroup requestAdGroup = new RequestAdGroup();
         requestAdGroup.setId(1L);
         requestAdGroup.setCampaignId(1L);
@@ -25,8 +25,8 @@ public class AdGroupTests extends BaseTest{
     }
 
 
-    @Test(expected = ObjectNotFoundException.class)
-    public void should_get_error_campaign_not_exists() throws Exception {
+    @Test(expected = ForbiddenException.class)
+    public void should_get_error_campaign_not_exists()  {
         RequestAdGroup requestAdGroup = new RequestAdGroup();
         requestAdGroup.setId(400L);
         requestAdGroup.setCampaignId(100L);
@@ -35,7 +35,7 @@ public class AdGroupTests extends BaseTest{
     }
 
     @Test
-    public void should_create_an_adgroup() throws Exception {
+    public void should_create_an_adgroup()  {
         RequestAdGroup requestAdGroup = new RequestAdGroup();
         requestAdGroup.setId(20L);
         requestAdGroup.setCampaignId(1L);
@@ -51,8 +51,9 @@ public class AdGroupTests extends BaseTest{
         Assert.assertEquals(requestAdGroup.getCost(), created.getCost());
     }
 
-    @Test(expected = ObjectNotFoundException.class)
-    public void should_find_ad_adgroup() {
-        adGroupService.getBy(1000L);
+    @Test
+    public void should_not_find_an_adgroup() {
+        AdGroupDto response = adGroupService.getBy(1000L);
+        Assert.assertNull(response);
     }
 }

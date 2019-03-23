@@ -8,7 +8,5 @@ public interface IAdGroupRepository {
 
     AdGroup create(RequestAdGroup requestAdGroup);
 
-    AdGroup addKeywords(Long id, Long keywordId);
-
     AdGroup findMostCostLessConverted();
 }

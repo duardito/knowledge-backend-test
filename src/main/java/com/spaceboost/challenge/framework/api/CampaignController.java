@@ -19,7 +19,7 @@ public class CampaignController {
     @GetMapping(value = "/campaigns/{id}")
     public ResponseEntity<CampainDto> get(@PathVariable Long id) {
         CampainDto campainDto = iCampainService.getBy(id);
-        return new ResponseEntity<CampainDto>(campainDto, campainDto.getId() == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+        return new ResponseEntity<CampainDto>(campainDto, campainDto == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     @PostMapping(value = "/campaigns/")

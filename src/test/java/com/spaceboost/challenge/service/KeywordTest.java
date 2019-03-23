@@ -1,6 +1,6 @@
-package com.spaceboost.challenge;
+package com.spaceboost.challenge.service;
 
-import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
+import com.spaceboost.challenge.domain.exception.ForbiddenException;
 import com.spaceboost.challenge.domain.keyword.IKeywordService;
 import com.spaceboost.challenge.domain.keyword.KeywordDto;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;
@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class KeywordTest extends BaseTest{
+public class KeywordTest extends BaseTest {
 
     @Autowired
     private IKeywordService iKeywordService;
@@ -43,7 +43,7 @@ public class KeywordTest extends BaseTest{
         Assert.assertEquals(request.getCost(), created.getCost());
     }
 
-    @Test(expected = ObjectNotFoundException.class)
+    @Test(expected = ForbiddenException.class)
     public void should_not_create_a_keyword_adgroup_not_exists() {
         RequestKeyword request = new RequestKeyword();
         request.setAdGroupId(100L);
@@ -77,10 +77,11 @@ public class KeywordTest extends BaseTest{
         Assert.assertEquals(new Double(9.11), created.getCost());
     }
 
-    @Test(expected = ObjectNotFoundException.class)
+    @Test
     public void should_not_find_a_keyword_even_adgroup_and_campain_exists() {
 
-        iKeywordService.getByIdByCampaignAndByGroup(2L,11L,1000L);
+        KeywordDto response = iKeywordService.getByIdByCampaignAndByGroup(2L, 11L, 1000L);
+        Assert.assertNull(response);
     }
 
 

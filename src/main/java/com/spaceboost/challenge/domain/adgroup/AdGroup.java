@@ -23,10 +23,6 @@ public class AdGroup {
         return new AdGroup(id, campaignId, clicks, conversions, cost);
     }
 
-    public void add(Long keywordId) {
-
-    }
-
     public Long getId() {
         return id;
     }

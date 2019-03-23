@@ -2,7 +2,6 @@ package com.spaceboost.challenge.framework.repository.adgroup;
 
 import com.spaceboost.challenge.domain.adgroup.AdGroup;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
-import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
 import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class AdGroupRepository implements IAdGroupRepository {
 
-    private List<AdGroup> persistence = new ArrayList<>();
+    private volatile List<AdGroup> persistence = new ArrayList<>();
 
     private List<AdGroup> getCopy() {
         return Collections.unmodifiableList(persistence);
@@ -30,7 +29,7 @@ public class AdGroupRepository implements IAdGroupRepository {
                 stream().
                 filter(campain -> campain.getId().equals(id)).
                 findFirst().
-                orElseThrow(() -> new ObjectNotFoundException("AdGroup doesn't exist"));
+                orElse(null);
     }
 
     @Override
@@ -46,31 +45,26 @@ public class AdGroupRepository implements IAdGroupRepository {
     }
 
     @Override
-    public AdGroup addKeywords(Long id, Long keywordId) {
-        AdGroup adGroup = find(id);
-        adGroup.add(keywordId);
-        return adGroup;
-    }
-
-    @Override
     public AdGroup findMostCostLessConverted() {
 
         Comparator<CostAndConversions> comparatorConversion = Comparator.comparing(CostAndConversions::getCost);
 
-        comparatorConversion = comparatorConversion.thenComparing(Comparator.comparing(CostAndConversions::getConversions).reversed());
+        comparatorConversion = comparatorConversion.
+                thenComparing(Comparator.comparing(CostAndConversions::getConversions).
+                        reversed()).
+                reversed();
 
         final Collector<AdGroup, CostAndConversions, CostAndConversions> collector = new AdGroupCostAndConversionsCollector();
 
-        final List<CostAndConversions> list = getCopy().stream().
+        final CostAndConversions convert = getCopy().stream().
                 collect(
                         Collectors.groupingBy(
                                 AdGroup::getCampaignId, collector))
                 .values()
                 .stream()
                 .sorted(comparatorConversion)
-                .collect(Collectors.toList());
-
-        final CostAndConversions convert = list.get(list.size() - 1);
+                .findFirst()
+                .get();
 
         return new AdGroup().create(convert.id, convert.campaignId, convert.clicks, convert.conversions, convert.cost);
     }

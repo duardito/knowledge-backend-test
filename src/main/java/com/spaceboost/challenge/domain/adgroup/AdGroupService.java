@@ -1,6 +1,8 @@
 package com.spaceboost.challenge.domain.adgroup;
 
+import com.spaceboost.challenge.domain.campain.CampainDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
+import com.spaceboost.challenge.domain.exception.ForbiddenException;
 import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 import com.spaceboost.challenge.framework.repository.adgroup.IAdGroupRepository;
 
@@ -34,6 +36,9 @@ public class AdGroupService implements IAdGroupService {
     @Override
     public AdGroupDto getBy(Long id) {
         AdGroup adGroup = iAdGroupRepository.find(id);
+        if(adGroup == null){
+            return null;
+        }
         return getAdGroupDto(adGroup);
     }
 
@@ -46,7 +51,10 @@ public class AdGroupService implements IAdGroupService {
     }
 
     private void validateCampaignExist(Long id){
-        iCampainService.getBy(id);
+        CampainDto campaing = iCampainService.getBy(id);
+        if(campaing == null){
+            throw new ForbiddenException("campaign not found");
+        }
     }
 
 }

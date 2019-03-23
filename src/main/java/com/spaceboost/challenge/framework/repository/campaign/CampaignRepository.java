@@ -2,13 +2,12 @@ package com.spaceboost.challenge.framework.repository.campaign;
 
 import com.spaceboost.challenge.domain.campain.Campaign;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
-import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CampainRepository implements ICampainRepository {
+public class CampaignRepository implements ICampaignRepository {
 
     private List<Campaign> persistence = new ArrayList<Campaign>();
 
@@ -26,7 +25,7 @@ public class CampainRepository implements ICampainRepository {
                 stream().
                 filter(campain -> campain.getId().equals(id)).
                 findFirst().
-                orElseThrow(() -> new ObjectNotFoundException("Campaign doesn't exist"));
+                orElse(null);
     }
 
     @Override
@@ -39,10 +38,4 @@ public class CampainRepository implements ICampainRepository {
         return campaign;
     }
 
-    @Override
-    public Campaign addAdGroups(Long id, Long groupId) {
-        Campaign campaign = find(id);
-        campaign.add(groupId);
-        return campaign;
-    }
 }

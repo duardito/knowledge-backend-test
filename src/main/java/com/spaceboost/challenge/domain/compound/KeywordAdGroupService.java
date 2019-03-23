@@ -5,7 +5,7 @@ import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.domain.keyword.IKeywordService;
 import com.spaceboost.challenge.domain.keyword.KeywordDto;
 
-public class KeywordAdGroupService implements IKeywordAdGroupService{
+public class KeywordAdGroupService implements IKeywordAdGroupService {
 
     private final IKeywordService iKeywordService;
     private final IAdGroupService iAdGroupService;
@@ -16,10 +16,13 @@ public class KeywordAdGroupService implements IKeywordAdGroupService{
     }
 
     @Override
-    public KeywordAdgroupDto getMostCostLessConverted(){
+    public KeywordAdGroupDto getMostCostLessConverted() {
         KeywordDto keyword = iKeywordService.getMostCostLessConverted();
         AdGroupDto adGroup = iAdGroupService.getMostCostLessConverted();
-        return new KeywordAdgroupDto(keyword,adGroup);
+        return new KeywordAdGroupDto.Builder().
+                adGroup(adGroup).
+                keyword(keyword).
+                build();
     }
 
 

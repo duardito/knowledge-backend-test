@@ -1,6 +1,8 @@
 package com.spaceboost.challenge.domain.keyword;
 
+import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
+import com.spaceboost.challenge.domain.exception.ForbiddenException;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;
 import com.spaceboost.challenge.framework.repository.keyword.IKeywordRepository;
 
@@ -24,6 +26,9 @@ public class KeywordService implements IKeywordService {
     @Override
     public KeywordDto getByIdByCampaignAndByGroup(Long campaignId, Long adGroupId, Long keywordId) {
         Keyword keyword = iKeywordRepository.findByIdByCampaignAndByGroup(campaignId, adGroupId, keywordId);
+        if(keyword == null){
+            return null;
+        }
         return get(keyword);
     }
 
@@ -49,7 +54,10 @@ public class KeywordService implements IKeywordService {
     }
 
     private void validateAdGroupExists(Long id) {
-        iAdGroupService.getBy(id);
+        AdGroupDto adGroup = iAdGroupService.getBy(id);
+        if(adGroup == null){
+            throw new ForbiddenException("AdGroup not found");
+        }
     }
 
 }

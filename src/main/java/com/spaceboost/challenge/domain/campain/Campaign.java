@@ -1,16 +1,10 @@
 package com.spaceboost.challenge.domain.campain;
 
-import java.util.Collections;
-import java.util.List;
-
 public class Campaign {
 
     private Long id;
-    private List<Long> groupId;
 
-    public Campaign(){
-
-    }
+    public Campaign(){}
 
     private Campaign(Long id) {
         this.id = id;
@@ -24,11 +18,4 @@ public class Campaign {
         return new Campaign(id);
     }
 
-    public List<Long> getGroupsID() {
-        return Collections.unmodifiableList(groupId);
-    }
-
-    public void add(Long groupId) {
-        this.getGroupsID().add(groupId);
-    }
 }

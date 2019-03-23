@@ -1,4 +1,4 @@
-package com.spaceboost.challenge;
+package com.spaceboost.challenge.service;
 
 
 import com.spaceboost.challenge.framework.Application;

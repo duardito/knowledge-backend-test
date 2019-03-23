@@ -1,19 +1,14 @@
-package com.spaceboost.challenge;
+package com.spaceboost.challenge.service;
 
 
 import com.spaceboost.challenge.domain.campain.CampainDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
-import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
-import com.spaceboost.challenge.framework.Application;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-public class CampaignTest extends BaseTest{
+public class CampaignTest extends BaseTest {
 
     @Autowired
     private ICampainService iCampainService;
@@ -29,9 +24,10 @@ public class CampaignTest extends BaseTest{
          iCampainService.create(1L);
     }
 
-    @Test(expected = ObjectNotFoundException.class)
+    @Test
     public void should_fail_getting_a_campaign_wich_not_exists(){
-        iCampainService.getBy(20L);
+        CampainDto response = iCampainService.getBy(20L);
+        Assert.assertNull(response);
     }
 
 
