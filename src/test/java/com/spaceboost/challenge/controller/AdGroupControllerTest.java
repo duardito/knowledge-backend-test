@@ -87,4 +87,26 @@ public class AdGroupControllerTest extends BaseTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.cost").value(12.4));
 
     }
+
+    @Test
+    public void should_fail_create_an_adGroup_wrong_negative_cost() throws Exception {
+
+        RequestAdGroup requestAdGroup = new RequestAdGroup();
+        requestAdGroup.setId(200L);
+        requestAdGroup.setCampaignId(2L);
+        requestAdGroup.setClicks(2);
+        requestAdGroup.setCost(-12.4);
+        requestAdGroup.setConversions(2);
+
+        final Gson gson = new Gson();
+        String json = gson.toJson(requestAdGroup);
+
+        this.mockMvc.perform(
+                post("/adGroup/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+
+    }
 }

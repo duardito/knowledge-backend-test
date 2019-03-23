@@ -96,6 +96,9 @@ public class KeywordControllerTest extends BaseTest {
         requestKeyword.setId(200L);
         requestKeyword.setAdGroupId(3000L);
         requestKeyword.setCampaignId(2L);
+        requestKeyword.setConversions(0);
+        requestKeyword.setCost(0.0);
+        requestKeyword.setClicks(0);
 
         final Gson gson = new Gson();
         String json = gson.toJson(requestKeyword);
@@ -116,6 +119,9 @@ public class KeywordControllerTest extends BaseTest {
         requestKeyword.setId(200L);
         requestKeyword.setAdGroupId(3L);
         requestKeyword.setCampaignId(250L);
+        requestKeyword.setConversions(0);
+        requestKeyword.setCost(12.0);
+        requestKeyword.setClicks(0);
 
         final Gson gson = new Gson();
         String json = gson.toJson(requestKeyword);
@@ -154,6 +160,29 @@ public class KeywordControllerTest extends BaseTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.campaignId").value(2L))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.clicks").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.cost").value(12.4));
+
+    }
+
+    @Test
+    public void should_fail_create_keyword_wrong_request_negative_clicks() throws Exception {
+
+        RequestKeyword requestKeyword = new RequestKeyword();
+        requestKeyword.setId(200L);
+        requestKeyword.setAdGroupId(3L);
+        requestKeyword.setCampaignId(2L);
+        requestKeyword.setClicks(-2);
+        requestKeyword.setCost(12.4);
+        requestKeyword.setConversions(2);
+
+        final Gson gson = new Gson();
+        String json = gson.toJson(requestKeyword);
+
+        this.mockMvc.perform(
+                post("/keywords")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
 
     }
 }
