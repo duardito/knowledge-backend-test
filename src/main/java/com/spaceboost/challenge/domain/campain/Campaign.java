@@ -14,7 +14,7 @@ public class Campaign {
         return id;
     }
 
-    public Campaign create(Long id) {
+    public static Campaign create(Long id) {
         return new Campaign(id);
     }
 

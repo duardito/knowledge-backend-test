@@ -8,8 +8,7 @@ public class AdGroup {
     private Integer conversions;
     private Double cost;
 
-    public AdGroup() {
-    }
+    public AdGroup(){}
 
     private AdGroup(Long id, Long campaignId, Integer clicks, Integer conversions, Double cost) {
         this.id = id;
@@ -19,7 +18,7 @@ public class AdGroup {
         this.cost = cost;
     }
 
-    public AdGroup create(Long id,Long campaignId, Integer clicks, Integer conversions, Double cost) {
+    public static AdGroup create(Long id,Long campaignId, Integer clicks, Integer conversions, Double cost) {
         return new AdGroup(id, campaignId, clicks, conversions, cost);
     }
 

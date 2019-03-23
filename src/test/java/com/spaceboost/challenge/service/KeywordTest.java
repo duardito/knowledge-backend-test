@@ -1,7 +1,7 @@
 package com.spaceboost.challenge.service;
 
 import com.spaceboost.challenge.BaseTest;
-import com.spaceboost.challenge.domain.exception.ForbiddenException;
+import com.spaceboost.challenge.infraestructure.exception.ForbiddenException;
 import com.spaceboost.challenge.domain.keyword.IKeywordService;
 import com.spaceboost.challenge.domain.keyword.KeywordDto;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;

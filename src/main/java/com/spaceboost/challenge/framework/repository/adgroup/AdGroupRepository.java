@@ -1,7 +1,7 @@
 package com.spaceboost.challenge.framework.repository.adgroup;
 
 import com.spaceboost.challenge.domain.adgroup.AdGroup;
-import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
+import com.spaceboost.challenge.infraestructure.exception.DuplicatedKeyException;
 import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class AdGroupRepository implements IAdGroupRepository {
             throw new DuplicatedKeyException("Duplicated key");
         }
 
-        AdGroup adGroup = new AdGroup().
+        AdGroup adGroup = AdGroup.
                 create(request.getId(), request.getCampaignId(), request.getClicks(), request.getConversions(), request.getCost());
         persistence.add(adGroup);
         return adGroup;
@@ -66,6 +66,6 @@ public class AdGroupRepository implements IAdGroupRepository {
                 .findFirst()
                 .get();
 
-        return new AdGroup().create(convert.id, convert.campaignId, convert.clicks, convert.conversions, convert.cost);
+        return AdGroup.create(convert.id, convert.campaignId, convert.clicks, convert.conversions, convert.cost);
     }
 }

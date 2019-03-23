@@ -1,7 +1,7 @@
 package com.spaceboost.challenge.framework.repository.campaign;
 
 import com.spaceboost.challenge.domain.campain.Campaign;
-import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
+import com.spaceboost.challenge.infraestructure.exception.DuplicatedKeyException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +33,7 @@ public class CampaignRepository implements ICampaignRepository {
         if (getSequenceNextValue(id)) {
             throw new DuplicatedKeyException("Invalid key");
         }
-        Campaign campaign = new Campaign().create(id);
+        Campaign campaign = Campaign.create(id);
         persistence.add(campaign);
         return campaign;
     }

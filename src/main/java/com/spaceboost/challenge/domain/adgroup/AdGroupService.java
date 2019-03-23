@@ -2,7 +2,7 @@ package com.spaceboost.challenge.domain.adgroup;
 
 import com.spaceboost.challenge.domain.campain.CampaingDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
-import com.spaceboost.challenge.domain.exception.ForbiddenException;
+import com.spaceboost.challenge.infraestructure.exception.ForbiddenException;
 import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
 import com.spaceboost.challenge.framework.repository.adgroup.IAdGroupRepository;
 

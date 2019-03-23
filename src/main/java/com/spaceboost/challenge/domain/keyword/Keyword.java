@@ -10,7 +10,7 @@ public class Keyword {
     private Integer conversions;
     private Double cost;
 
-    public Keyword(){}
+    public Keyword() { }
 
     private Keyword(Long id, Long campaignId, Long adGroupId, Integer clicks, Integer conversions, Double cost) {
         this.id = id;
@@ -21,7 +21,7 @@ public class Keyword {
         this.cost = cost;
     }
 
-    public Keyword create(Long id, Long campaignId, Long adGroupId, Integer clicks, Integer conversions, Double cost) {
+    public static Keyword create(Long id, Long campaignId, Long adGroupId, Integer clicks, Integer conversions, Double cost) {
         return new Keyword(id, campaignId, adGroupId, clicks, conversions, cost);
     }
 
@@ -29,7 +29,7 @@ public class Keyword {
         return id;
     }
 
-    public  Long getCampaignId() {
+    public Long getCampaignId() {
         return campaignId;
     }
 
@@ -41,7 +41,7 @@ public class Keyword {
         return clicks;
     }
 
-    public  Integer getConversions() {
+    public Integer getConversions() {
         return conversions;
     }
 

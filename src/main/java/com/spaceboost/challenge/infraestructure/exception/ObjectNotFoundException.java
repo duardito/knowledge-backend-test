@@ -1,4 +1,4 @@
-package com.spaceboost.challenge.domain.exception;
+package com.spaceboost.challenge.infraestructure.exception;
 
 public class ObjectNotFoundException extends RuntimeException {
 

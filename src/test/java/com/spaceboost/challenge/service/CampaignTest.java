@@ -4,7 +4,7 @@ package com.spaceboost.challenge.service;
 import com.spaceboost.challenge.BaseTest;
 import com.spaceboost.challenge.domain.campain.CampaingDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
-import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
+import com.spaceboost.challenge.infraestructure.exception.DuplicatedKeyException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

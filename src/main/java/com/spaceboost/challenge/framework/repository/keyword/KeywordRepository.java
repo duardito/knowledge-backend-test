@@ -1,6 +1,6 @@
 package com.spaceboost.challenge.framework.repository.keyword;
 
-import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
+import com.spaceboost.challenge.infraestructure.exception.DuplicatedKeyException;
 import com.spaceboost.challenge.domain.keyword.Keyword;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;
 
@@ -38,7 +38,7 @@ public class KeywordRepository implements IKeywordRepository {
             throw new DuplicatedKeyException(request.getId().toString());
         }
 
-        Keyword keyword = new Keyword().
+        Keyword keyword = Keyword.
                 create(request.getId(), request.getCampaignId(), request.getAdGroupId(), request.getClicks(), request.getConversions(), request.getCost());
         persistence.add(keyword);
         return keyword;
@@ -78,6 +78,6 @@ public class KeywordRepository implements IKeywordRepository {
                 .findFirst()
                 .get();
 
-        return new Keyword().create(convert.id, convert.campaignId, convert.adGroupId, convert.clicks, convert.conversions, convert.cost);
+        return Keyword.create(convert.id, convert.campaignId, convert.adGroupId, convert.clicks, convert.conversions, convert.cost);
     }
 }

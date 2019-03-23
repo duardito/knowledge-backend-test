@@ -4,7 +4,7 @@ import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.domain.campain.CampaingDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
-import com.spaceboost.challenge.domain.exception.ForbiddenException;
+import com.spaceboost.challenge.infraestructure.exception.ForbiddenException;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;
 import com.spaceboost.challenge.framework.repository.keyword.IKeywordRepository;
 

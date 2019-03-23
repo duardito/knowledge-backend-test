@@ -1,8 +1,8 @@
 package com.spaceboost.challenge.framework.configuration;
 
-import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
-import com.spaceboost.challenge.domain.exception.ForbiddenException;
-import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
+import com.spaceboost.challenge.infraestructure.exception.DuplicatedKeyException;
+import com.spaceboost.challenge.infraestructure.exception.ForbiddenException;
+import com.spaceboost.challenge.infraestructure.exception.ObjectNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
