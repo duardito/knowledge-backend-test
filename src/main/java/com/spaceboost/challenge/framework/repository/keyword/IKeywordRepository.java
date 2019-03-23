@@ -1,4 +1,4 @@
-package com.spaceboost.challenge.framework.repository;
+package com.spaceboost.challenge.framework.repository.keyword;
 
 import com.spaceboost.challenge.domain.keyword.Keyword;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;

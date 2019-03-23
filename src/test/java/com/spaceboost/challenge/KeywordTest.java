@@ -32,6 +32,7 @@ public class KeywordTest extends BaseTest{
         request.setClicks(1);
         request.setConversions(1);
         request.setCost(12.00);
+        request.setId(30L);
 
         KeywordDto created = iKeywordService.create(request);
         Assert.assertEquals(request.getId(), created.getId());

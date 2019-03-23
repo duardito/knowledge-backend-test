@@ -1,18 +1,14 @@
-package com.spaceboost.challenge.framework.repository;
+package com.spaceboost.challenge.framework.repository.adgroup;
 
-public class CostAndConverssions {
+public class CostAndConversions {
 
     public Integer conversions;
     public Double cost;
-
     public Long id;
     public Long campaignId;
-    public Long adGroupId;
     public Integer clicks;
 
-
-
-    public CostAndConverssions(){
+    public CostAndConversions(){
         conversions = 0;
         cost = 0.00;
     }

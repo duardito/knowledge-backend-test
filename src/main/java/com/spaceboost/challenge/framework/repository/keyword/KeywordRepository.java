@@ -1,4 +1,4 @@
-package com.spaceboost.challenge.framework.repository;
+package com.spaceboost.challenge.framework.repository.keyword;
 
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
 import com.spaceboost.challenge.domain.exception.ObjectNotFoundException;
@@ -18,7 +18,7 @@ public class KeywordRepository implements IKeywordRepository {
     }
 
     private Boolean getSequenceNextValue(Long id) {
-        return getCopy().stream().anyMatch(p -> id.equals(p.getId()));
+        return getCopy().stream().filter(p->id.equals( p.getId())).findFirst().isPresent();
     }
 
     @Override
@@ -66,13 +66,13 @@ public class KeywordRepository implements IKeywordRepository {
     @Override
     public Keyword findMostCostLessConverted() {
 
-        Comparator<CostAndConverssions> comparatorConversion = Comparator.comparing(CostAndConverssions::getCost);
+        Comparator<CostAndConversions> comparatorConversion = Comparator.comparing(CostAndConversions::getCost);
 
-        comparatorConversion = comparatorConversion.thenComparing(Comparator.comparing(CostAndConverssions::getConversions).reversed());
+        comparatorConversion = comparatorConversion.thenComparing(Comparator.comparing(CostAndConversions::getConversions).reversed());
 
-        final Collector<Keyword, CostAndConverssions, CostAndConverssions> collector = new KeywordCostAndConverssionsCollector();
+        final Collector<Keyword, CostAndConversions, CostAndConversions> collector = new KeywordCostAndConverssionsCollector();
 
-        final List<CostAndConverssions> list = getCopy().stream().
+        final List<CostAndConversions> list = getCopy().stream().
                 collect(
                         Collectors.groupingBy(
                                 Keyword::getCampaignId, collector))
@@ -81,7 +81,7 @@ public class KeywordRepository implements IKeywordRepository {
                 .sorted(comparatorConversion)
                 .collect(Collectors.toList());
 
-        final CostAndConverssions convert = list.get(list.size() - 1);
+        final CostAndConversions convert = list.get(list.size() - 1);
 
         return new Keyword().create(convert.id, convert.campaignId, convert.adGroupId, convert.clicks, convert.conversions, convert.cost);
     }

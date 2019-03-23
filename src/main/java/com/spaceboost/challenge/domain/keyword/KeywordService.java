@@ -2,7 +2,7 @@ package com.spaceboost.challenge.domain.keyword;
 
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.framework.api.request.RequestKeyword;
-import com.spaceboost.challenge.framework.repository.IKeywordRepository;
+import com.spaceboost.challenge.framework.repository.keyword.IKeywordRepository;
 
 public class KeywordService implements IKeywordService {
 

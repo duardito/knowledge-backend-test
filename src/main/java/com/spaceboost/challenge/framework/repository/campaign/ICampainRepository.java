@@ -1,4 +1,4 @@
-package com.spaceboost.challenge.framework.repository;
+package com.spaceboost.challenge.framework.repository.campaign;
 
 import com.spaceboost.challenge.domain.campain.Campaign;
 

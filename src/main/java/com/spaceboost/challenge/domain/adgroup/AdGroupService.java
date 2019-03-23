@@ -2,7 +2,7 @@ package com.spaceboost.challenge.domain.adgroup;
 
 import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.framework.api.request.RequestAdGroup;
-import com.spaceboost.challenge.framework.repository.IAdGroupRepository;
+import com.spaceboost.challenge.framework.repository.adgroup.IAdGroupRepository;
 
 public class AdGroupService implements IAdGroupService {
 
@@ -15,8 +15,13 @@ public class AdGroupService implements IAdGroupService {
     }
 
     @Override
-    public AdGroupDto getBy(Long id) {
-        AdGroup adGroup = iAdGroupRepository.find(id);
+    public AdGroupDto getMostCostLessConverted(){
+
+        AdGroup adGroup =iAdGroupRepository.findMostCostLessConverted();
+        return getAdGroupDto(adGroup);
+    }
+
+    private AdGroupDto getAdGroupDto(AdGroup adGroup) {
         return new AdGroupDto.Builder().
                 id(adGroup.getId()).
                 clicks(adGroup.getClicks()).
@@ -26,18 +31,18 @@ public class AdGroupService implements IAdGroupService {
                 build();
     }
 
+    @Override
+    public AdGroupDto getBy(Long id) {
+        AdGroup adGroup = iAdGroupRepository.find(id);
+        return getAdGroupDto(adGroup);
+    }
+
 
     @Override
     public AdGroupDto create(RequestAdGroup requestAdGroup){
         validateCampaignExist(requestAdGroup.getCampaignId());
         AdGroup adGroup = iAdGroupRepository.create(requestAdGroup);
-        return new AdGroupDto.Builder().
-                id(adGroup.getId()).
-                clicks(adGroup.getClicks()).
-                campaignId(adGroup.getCampaignId()).
-                cost(adGroup.getCost()).
-                conversions(adGroup.getConversions()).
-                build();
+        return getAdGroupDto(adGroup);
     }
 
     private void validateCampaignExist(Long id){

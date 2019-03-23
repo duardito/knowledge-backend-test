@@ -1,6 +1,6 @@
 package com.spaceboost.challenge.domain.campain;
 
-import com.spaceboost.challenge.framework.repository.ICampainRepository;
+import com.spaceboost.challenge.framework.repository.campaign.ICampainRepository;
 
 public class CampainService implements ICampainService {
 

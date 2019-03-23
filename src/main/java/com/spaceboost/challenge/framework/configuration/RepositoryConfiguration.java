@@ -1,11 +1,11 @@
 package com.spaceboost.challenge.framework.configuration;
 
-import com.spaceboost.challenge.framework.repository.AdGroupRepository;
-import com.spaceboost.challenge.framework.repository.IAdGroupRepository;
-import com.spaceboost.challenge.framework.repository.CampainRepository;
-import com.spaceboost.challenge.framework.repository.ICampainRepository;
-import com.spaceboost.challenge.framework.repository.IKeywordRepository;
-import com.spaceboost.challenge.framework.repository.KeywordRepository;
+import com.spaceboost.challenge.framework.repository.adgroup.AdGroupRepository;
+import com.spaceboost.challenge.framework.repository.adgroup.IAdGroupRepository;
+import com.spaceboost.challenge.framework.repository.campaign.CampainRepository;
+import com.spaceboost.challenge.framework.repository.campaign.ICampainRepository;
+import com.spaceboost.challenge.framework.repository.keyword.IKeywordRepository;
+import com.spaceboost.challenge.framework.repository.keyword.KeywordRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
