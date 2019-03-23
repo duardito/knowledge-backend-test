@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -22,13 +23,13 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class KeywordControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
 
     private MockMvc mockMvc;
-
 
     @Before
     public void setup() {
@@ -58,7 +59,7 @@ public class KeywordControllerTest {
     }
 
     @Test
-    public void should_get_an_error_when_create_keyword_addGroup_not_exists() throws Exception {
+    public void should_get_an_error_when_get_a_keyword_addGroup_not_exists() throws Exception {
 
         this.mockMvc.perform(
                 get("/campaigns/1/adGroups/100/keywords/1")
@@ -97,6 +98,7 @@ public class KeywordControllerTest {
         requestKeyword.setCampaignId(2L);
         requestKeyword.setClicks(2);
         requestKeyword.setCost(12.4);
+        requestKeyword.setConversions(2);
 
         final Gson gson = new Gson();
         String json = gson.toJson(requestKeyword);
