@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class KeywordController {
 
@@ -17,7 +19,7 @@ public class KeywordController {
     }
 
     @PostMapping("/keywords")
-    public ResponseEntity<KeywordDto> create(@RequestBody RequestKeyword requestKeyword) {
+    public ResponseEntity<KeywordDto> create(@Valid @RequestBody RequestKeyword requestKeyword) {
         final KeywordDto keyword = iKeywordService.create(requestKeyword);
         return new ResponseEntity<KeywordDto>(keyword, HttpStatus.CREATED);
     }

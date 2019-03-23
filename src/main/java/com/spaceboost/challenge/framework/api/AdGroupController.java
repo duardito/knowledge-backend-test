@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class AdGroupController {
 
@@ -23,7 +25,7 @@ public class AdGroupController {
     }
 
     @PostMapping("/adGroup/")
-    public ResponseEntity<AdGroupDto> create(@RequestBody RequestAdGroup requestAdGroup) {
+    public ResponseEntity<AdGroupDto> create(@Valid @RequestBody RequestAdGroup requestAdGroup) {
         final AdGroupDto adGroup = iAdGroupService.create(requestAdGroup);
         return new ResponseEntity<AdGroupDto>(adGroup, HttpStatus.CREATED);
     }

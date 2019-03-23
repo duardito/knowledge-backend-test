@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class CampaignController {
 
@@ -23,7 +25,7 @@ public class CampaignController {
     }
 
     @PostMapping(value = "/campaigns/")
-    public ResponseEntity<CampaingDto> create(@RequestBody RequestCampaign requestCampaign) {
+    public ResponseEntity<CampaingDto> create(@Valid @RequestBody RequestCampaign requestCampaign) {
         final CampaingDto campaingDto = iCampainService.create(requestCampaign.getId());
         return new ResponseEntity<CampaingDto>(campaingDto, HttpStatus.CREATED);
     }

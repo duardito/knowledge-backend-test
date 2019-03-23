@@ -1,9 +1,16 @@
 package com.spaceboost.challenge.framework.api.request;
 
+import javax.validation.constraints.NotNull;
+
 public class RequestKeyword {
 
+    @NotNull
     private Long id;
+
+    @NotNull
     private Long campaignId;
+
+    @NotNull
     private Long adGroupId;
     private Integer clicks;
     private Integer conversions;
