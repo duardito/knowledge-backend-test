@@ -1,6 +1,7 @@
 package com.spaceboost.challenge.service;
 
 
+import com.spaceboost.challenge.BaseTest;
 import com.spaceboost.challenge.domain.campain.CampainDto;
 import com.spaceboost.challenge.domain.campain.ICampainService;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;

@@ -1,5 +1,6 @@
 package com.spaceboost.challenge.service;
 
+import com.spaceboost.challenge.BaseTest;
 import com.spaceboost.challenge.domain.adgroup.AdGroupDto;
 import com.spaceboost.challenge.domain.adgroup.IAdGroupService;
 import com.spaceboost.challenge.domain.exception.DuplicatedKeyException;
@@ -10,7 +11,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class AdGroupTests extends BaseTest{
+public class AdGroupTests extends BaseTest {
 
     @Autowired
     private IAdGroupService adGroupService;
